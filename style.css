@@ -1,0 +1,487 @@
+/*    Global Styles  -------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background:
+      /* A circuit-inspired SVG background, plus a dark gradient overlay. */
+      url("https://svgshare.com/i/tJ2.svg") center center no-repeat,
+      linear-gradient(135deg, #141E30, #243B55);
+    background-size: cover, cover;
+    background-blend-mode: multiply;
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.5s, color 0.5s;
+  }
+  
+  /* Dark Mode styles. When dark mode is active, we toggle a class on body */
+  body.dark-mode {
+    background: linear-gradient(135deg, #1c1c1c, #333333);
+    background-size: cover;
+    color: #ccc;
+  }
+  
+  /*      Navigation Bar    -------------------------------------------------- */
+  header {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+  }
+  
+  /* Logo */
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
+  /* Main nav links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .nav-links li a:hover {
+    color: #ffd700;
+    border-bottom: 2px solid #ffd700;
+  }
+  
+  /* Social icons in nav */
+  .social-icons-nav {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-left: 1rem;
+  }
+  
+  .social-icons-nav li img {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-icons-nav li:hover img {
+    transform: scale(1.3);
+  }
+  
+  
+  /* Hamburger menu (mobile) */
+  .nav-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .nav-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fff;
+    transition: all 0.3s;
+  }
+  
+  /* Responsive Navigation */
+  @media (max-width: 920px) {
+    .nav-links,
+    .social-icons-nav {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      flex-direction: column;
+      width: 200px;
+      margin: 0;
+      padding: 1rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 99;
+    }
+    
+    .nav-links li,
+    .social-icons-nav li {
+      margin: 1rem 0;
+    }
+    
+    .nav-toggle {
+      display: block;
+    }
+  }
+  
+  /*      Dark Mode Toggle    -------------------------------------------------- */
+  .dark-mode-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 130px;    /* Increased width so text doesn't wrap */
+    height: 40px;
+    background: #777;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    z-index: 1000;
+  }
+  
+  .dark-mode-toggle:hover {
+    background: #888;
+  }
+  
+  /* Centered toggle text */
+  .toggle-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;  /* Prevent wrapping to 2 lines */
+    user-select: none;
+  }
+  
+  /* The sliding circle for the toggle */
+  .toggle-circle {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+  
+  /* When dark mode is active, move the circle to the right */
+  /* Calculation: 130px total width - 30px circle - (5px*2) = 90px */
+  body.dark-mode .toggle-circle {
+    transform: translateX(90px);
+  }
+  
+  /* ===========================
+     Hero Section
+  =========================== */
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    padding: 0 2rem;
+    overflow: hidden;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
+      rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: slideInFromLeft 1s forwards;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    min-height: 40px; /* Space for typing effect */
+    animation: slideInFromRight 1s forwards;
+  }
+  
+  .cursor {
+    display: inline-block;
+    color: #ffd700;
+    font-weight: 700;
+    animation: blink 1s infinite alternate;
+  }
+  
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  
+  .hero-btn {
+    background-color: #ffd700;
+    color: #333;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s;
+  }
+  
+  .hero-btn:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+  }
+  
+  /* Keyframes for hero animations */
+  @keyframes slideInFromLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideInFromRight {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  /* ===========================
+     Sections
+  =========================== */
+  .section {
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Underline for titles */
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #ffd700;
+    margin: 0.5rem auto 0;
+  }
+  
+  /* ===========================
+     About
+  =========================== */
+  .about .description {
+    margin-bottom: 1rem;
+    color: #eee;
+    line-height: 1.7;
+  }
+  
+  .about-details {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+  
+  .about-details p {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .about-details a {
+    color: #ffd700;
+    text-decoration: none;
+  }
+  
+  .about-details a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ===========================
+     Education
+  =========================== */
+  .edu-card {
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  .edu-card h3 {
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+  }
+  
+  .edu-card ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    list-style-type: disc;
+    color: #eee;
+  }
+  
+  .link-btn {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #ffd700;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s;
+  }
+  
+  .link-btn:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+  }
+  
+  /* ===========================
+     Volunteering
+  =========================== */
+  .vol-card {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  .vol-card h3 {
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+  }
+  
+  /* ===========================
+     Skills
+  =========================== */
+  .skills .skill-category {
+    background-color: rgba(255, 255, 255, 0.08);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  .skills .skill-category h3 {
+    color: #ffd700;
+  }
+  
+  .skills .skill-category ul {
+    margin-left: 1.5rem;
+    list-style-type: disc;
+    color: #eee;
+  }
+  
+  .soft-skills ul {
+    margin-left: 1.5rem;
+    list-style-type: disc;
+    color: #eee;
+  }
+  
+  /* ===========================
+     Languages
+  =========================== */
+  .languages .section-content p {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+  
+  /* ===========================
+     Contact
+  =========================== */
+  .contact p {
+    text-align: center;
+    color: #eee;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-btn {
+    background-color: #ffd700;
+    color: #333;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    margin: 0.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .contact-btn:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+  }
+  
+  .contact .section-content {
+    text-align: center;
+  }
+  
+  /* ===========================
+     Footer
+  =========================== */
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    color: #ddd;
+    background-color: rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 3;
+  }
+  
+  /* ===========================
+     Scroll Reveal Animation
+  =========================== */
+  .section-content.reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
